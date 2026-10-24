@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://df4hu2bsx4hkv"]
+
+[ext_resource type="Script" uid="uid://djc5qjevexf55" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
+size = Vector2(40, 30)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4flbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sh265")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-42.75, -34.5, 42.25, -34, 41.25, 30.5, -44.25, 29)
+uv = PackedVector2Array(-89.25, -48.5, -4.25, -48, -5.25, 16.5, -90.75, 15)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(30, 0)
+shape = SubResource("RectangleShape2D_4flbx")
+
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hit_box_body_entered"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5jbfidnhb7lo"]
+
+[ext_resource type="PackedScene" uid="uid://df4hu2bsx4hkv" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cuhlbg5x3tvc4" path="res://enemy.tscn" id="2_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(640, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(32, 380)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(320, 240)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(320, 50)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(320, 430)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(16, 240)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(624, 240)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.24017414, 0.54250485, 0.91363263, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(450, 240)
